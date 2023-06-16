@@ -70,7 +70,7 @@ pipeline {
                 expression {params.action == 'create'}
             }
             steps{
-                dockerCLeanUP {"${params.ImageName}", "${params.docker_repo}"}
+                dockerCLeanUP {"${params.ImageName}","${params.docker_repo}"}
             }
         }
 /*
