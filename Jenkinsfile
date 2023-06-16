@@ -1,8 +1,8 @@
 @Library('jenkins-shared-library1-singham@main')
-pipeline{
+pipeline {
     agent any
 
-    tools{
+    tools {
         maven 'myMaven'
     }
 
