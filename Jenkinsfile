@@ -68,9 +68,9 @@ pipeline {
             steps{
                 dir("${params.AppName}"){
                     script{
-                        withCredentials([string(credentialsId: 'DockerHubPasswd', variable: 'passwd')]) {
-                        sh 'docker login -u $docker_cred -p $passwd'
-                        }
+                        // withCredentials([string(credentialsId: 'DockerHubPasswd', variable: 'passwd')]) {
+                        // sh 'docker login -u $docker_cred -p $passwd'
+                        // }
                         sh 'docker push $docker_cred/$ImageName:$ImageTag'
                     }
                 }
