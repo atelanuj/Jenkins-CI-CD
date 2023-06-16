@@ -39,6 +39,7 @@ pipeline {
                 expression {params.action == 'create'}
             }
             steps{
+                sh 'ls -lrt'
                 sh 'mvn clean package'
             }
         }
