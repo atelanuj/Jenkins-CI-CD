@@ -55,7 +55,9 @@ pipeline {
                 expression {params.action == 'create'}
             }
             steps{
-                dockerbuild ("${params.ImageName}", "${params.docker_repo}")
+                dir("${params.AppName}"){
+                    dockerbuild ("${params.ImageName}", "${params.docker_repo}")
+                }
             }
         }
 
@@ -64,7 +66,9 @@ pipeline {
                 expression {params.action == 'create'}
             }
             steps{
-                dockerbuild ("${params.ImageName}", "${params.docker_repo}")
+                dir("${params.AppName}"){
+                    dockerbuild ("${params.ImageName}", "${params.docker_repo}")
+                }
             }
         }
 
