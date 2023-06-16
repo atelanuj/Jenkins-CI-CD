@@ -39,8 +39,10 @@ pipeline {
                 expression {params.action == 'create'}
             }
             steps{
-                sh 'ls -lrt'
-                sh 'mvn clean package'
+                dir("${params.AppName}") {
+                    sh 'ls -lrt'
+                    sh 'mvn clean package'
+                }
             }
         }
 /*
