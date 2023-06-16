@@ -56,7 +56,7 @@ pipeline {
             }
             steps{
                 dir("${params.AppName}"){
-                    docker build -t ${docker_repo}/${ImageName}:${ImageTag} .
+                    sh 'docker build -t ${docker_repo}/${ImageName}:${ImageTag} .'
                 }
             }
         }
