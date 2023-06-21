@@ -83,7 +83,7 @@ pipeline {
                 expression {params.action == 'create'}
             }
             steps{
-                sh 'docker image prone'
+                sh 'docker image prune'
             }
         }
 
