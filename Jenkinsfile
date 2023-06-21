@@ -86,7 +86,7 @@ pipeline {
                 dockerCLeanUP ("${params.ImageName}", "${params.docker_repo}")
             }
         }
-/*
+
         stage("Ansible-Setup"){
             when {
 				expression { params.action == 'create' }
@@ -95,9 +95,8 @@ pipeline {
                 sh 'ansible-playbook ${WORKSPACE}/ansible-playbook.yaml'
             }
         }
-*/
 
-        stage("EKS Cluster Creation"){
+        stage("EKS Cluster Creation upto 20 mins"){
             when {
 				expression { params.action == 'create' }
 			}
@@ -120,7 +119,7 @@ pipeline {
 
         stage("Wait for Pod-Creation"){
             steps{
-                sh 'sleep 200'
+                sh 'sleep 300'
             }
         }
 
@@ -131,7 +130,7 @@ pipeline {
             }
         }
 
-        stage("Deleting the EKS Cluster"){
+        stage("Deleting the EKS Cluster upto 15 min"){
             steps{
                 sh 'eksctl delete cluster --name ${params.eks-cluster-name}'
             }
