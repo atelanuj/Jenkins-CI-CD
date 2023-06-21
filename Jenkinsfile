@@ -77,7 +77,7 @@ pipeline {
                 }
             }
         }
-
+/*
         stage("Docker-CLeanUP-Images"){
             when{
                 expression {params.action == 'create'}
@@ -86,7 +86,7 @@ pipeline {
                 sh 'docker image prune -y'
             }
         }
-
+*/
         stage("Ansible-Setup"){
             when {
 				expression { params.action == 'create' }
