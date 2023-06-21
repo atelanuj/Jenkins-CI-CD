@@ -93,7 +93,7 @@ pipeline {
 			}
             steps{
                 dir("${params.AppName}"){
-                    sh 'ansible-playbook ansible-playbook.yaml'
+                    sh 'ansible-playbook ${WORKSPACE}/${AppName}/ansible-playbook.yaml'
                 }
             }
         }
