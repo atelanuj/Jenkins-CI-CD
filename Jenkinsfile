@@ -86,7 +86,7 @@ pipeline {
                 sh 'docker image prune -y'
             }
         }
-*/
+
         stage("Ansible-Setup"){
             when {
 				expression { params.action == 'create' }
@@ -97,7 +97,7 @@ pipeline {
                 }
             }
         }
-
+*/
         stage("EKS Cluster Creation upto 20 mins"){
             when {
 				expression { params.action == 'create' }
