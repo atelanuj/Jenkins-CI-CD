@@ -12,6 +12,7 @@ pipeline {
 	string(name: 'ImageTag', description: "Name of the docker build",defaultValue: "v${BUILD_NUMBER}")
 	string(name: 'AppName', description: "Name of the Application",defaultValue: "kubernetes-configmap-reload")
     string(name: 'docker_repo', description: "Name of docker repository",defaultValue: "anujatel")
+    string(name: 'eks-cluster-name', description: "Name of Kubernetes Cluster",defaultValue: "my-eks-cluster")
   }
 
     stages{
@@ -127,7 +128,12 @@ pipeline {
             steps{
                 sh 'kubectl delete deploy ${params.AppName}'
                 sh 'kubectl delete svc ${params.AppName}'
-                sh 'eksctl delete cluster --name my-eks-cluster'
+            }
+        }
+
+        stage("Deleting the EKS Cluster"){
+            steps{
+                sh 'eksctl delete cluster --name ${params.eks-cluster-name}'
             }
         }
 

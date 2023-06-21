@@ -1,6 +1,6 @@
 FROM openjdk:8
 
-ADD $WORKSPACE/target/*.jar .
+ADD ${WORKSPACE}/target/*.jar .
 
 EXPOSE 8080
 
