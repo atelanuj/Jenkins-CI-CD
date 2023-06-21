@@ -51,7 +51,7 @@ pipeline {
 
         }
 */
-        stage("Docker-Build"){
+        stage("Docker-image-Build"){
             when{
                 expression {params.action == 'create'}
             }
@@ -83,7 +83,7 @@ pipeline {
                 expression {params.action == 'create'}
             }
             steps{
-                dockerCLeanUP ("${params.ImageName}", "${params.docker_repo}")
+                sh 'docker rmi -f $(docker images -a -q)'
             }
         }
 
