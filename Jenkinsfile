@@ -83,7 +83,7 @@ pipeline {
                 expression {params.action == 'create'}
             }
             steps{
-                sh 'docker rmi $(docker images -a -q)'
+                sh 'docker image prone'
             }
         }
 
