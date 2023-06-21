@@ -83,7 +83,7 @@ pipeline {
                 expression {params.action == 'create'}
             }
             steps{
-                sh 'docker image prune'
+                sh 'docker image prune -y'
             }
         }
 
@@ -92,7 +92,9 @@ pipeline {
 				expression { params.action == 'create' }
 			}
             steps{
-                sh 'ansible-playbook ${WORKSPACE}/ansible-playbook.yaml'
+                dir("${params.AppName}"){
+                    sh 'ansible-playbook ansible-playbook.yaml'
+                }
             }
         }
 
