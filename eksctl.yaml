@@ -1,0 +1,15 @@
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata: 
+    name: my-eks-cluster
+    region: ap-south-1
+nodeGroups:
+  - name: eksNodeGroup
+    desiredCapacity: 2
+    amiType: managed  #instance
+    kubernetesVersion: "1.24"
+    instanceType: t2.micro
+    # vpcSubnets:               #for eks creation inside a custom VPC
+    # - subnet-12345678
+    # - subnet-98654321

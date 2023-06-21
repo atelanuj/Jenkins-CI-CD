@@ -95,16 +95,25 @@ pipeline {
             }
         }
 */
-        stage("EKS/MINIkube-Deployment"){
+
+        stage("EKS Cluster Creation"){
+            when {
+				expression { params.action == 'create' }
+			}
+            steps{
+                dir("${params.AppName}"){
+                    sh 'eksctl create nodegroup -f eksctl.yaml'
+                }
+            }
+        }
+
+        stage("EKS-Deployment"){
             when {
 				expression { params.action == 'create' }
 			}
             steps{
                 sh 'echo ${WORKSPACE}'
                 sh 'kubectl apply -f ${WORKSPACE}/kubernetes-configmap-reload/Deployment.yaml'
-                script{
-                    kubernetesDeploy (configs: 'Deployment.yaml', kubeconfigId: 'MiniKube')
-                }
             }
         }
 
@@ -113,13 +122,14 @@ pipeline {
                 sh 'sleep 200'
             }
         }
-/*
+
         stage("Roll-Back-Deployment"){
             steps{
                 sh 'kubectl delete deploy ${params.AppName}'
                 sh 'kubectl delete svc ${params.AppName}'
+                sh 'eksctl delete cluster --name my-eks-cluster'
             }
         }
-*/
+
     }
 }
