@@ -1,76 +1,100 @@
-1. Launch an instance from an Amazon Linux 2 or Amazon Linux AMI.
-2. Connect to your instance.
-3. Update the packages and package caches you have installed on your instance.
-`
++++++++++++++++++++++++++++++++++
+Jenkins
+++++++++++++++++++++++++++++++++
+sudo apt update
 
-sudo su
-yum update -y
+sudo apt install openjdk-8-jdk -y
 
-4. Install the latest Docker Engine packages.
+curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
 
-Amazon Linux 2 amazon-linux-extras install 
-docker yum install docker -y
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
 
-5. Start the Docker service.
+sudo apt update
 
-systemctl start docker 
-systemctl enable docker
+sudo apt install jenkins -y
 
-6. Install Conntrack:
+sudo systemctl status jenkins
 
-yum install conntrack -y
+sudo su - jenkins
 
-7. Install k8
+jenkins ALL=(ALL) NOPASSWD: ALL
 
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
++++++++++++++++++++++++++++++++++
+Docker
+++++++++++++++++++++++++++++++++
 
-sudo install minikube-linux-amd64 /usr/local/bin/minikube
+sudo apt install docker.io -y
 
+docker --version
 
-8. Start Minikube
+sudo usermod -aG docker jenkins
 
-/usr/local/bin/minikube start --force --driver=docker
+sudo reboot
 
-/usr/local/bin/minikube version
+docker ps
 
-9. Install kubectl
++++++++++++++++++++++++++++++++++
+AWS CLI
+++++++++++++++++++++++++++++++++
 
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo apt install awscli
 
-sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 
-/usr/local/bin/kubectl version
+unzip awscliv2.zip
 
-10. Make the DB up
+sudo ./aws/install --update
 
-11.yum install maven -y	
+aws –version
 
-12. Create the docker image
+aws configure
 
-docker build -t praveensingam1994/springboot-crud-k8s:1.0 .
++++++++++++++++++++++++++++++++++
+kubectl
+++++++++++++++++++++++++++++++++
 
-13. docker login
+curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.23.6/bin/linux/amd64/kubectl
 
+chmod +x ./kubectl
 
-14. /usr/local/bin/kubectl  apply -f app-deployment.yaml
+sudo mv ./kubectl /usr/local/bin/kubectl
 
-15. /usr/local/bin/kubectl  get svc
+kubectl get pods – WILL GIVE ERROR
 
-16.  /usr/local/bin/minikube ip
++++++++++++++++++++++++++++++++++
+EKSctl
+++++++++++++++++++++++++++++++++
 
-17. http://<minikubeIP>:31125/orders
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 
+sudo mv /tmp/eksctl /usr/local/bin
 
-18. PUT PORT FORWARD
+sudo mv /tmp/eksctl /usr/local/bin
 
-/usr/local/bin/kubectl port-forward --address 0.0.0.0 svc/springboot-crud-svc 8080:8080 &
+eksctl version
 
-[HOST PORT TO CONTAINER PORT 
+eksctl --help
 
++++++++++++++++++++++++++++++++++
+Docker HUb
+++++++++++++++++++++++++++++++++
 
-kubectl port-forward --address 0.0.0.0 svc/{your service name} {external port to the Internet}:{your service port, the port your app is listening on in it's container}
+docker login
 
-for example, if my service is named badstore and is listening on 80
++++++++++++++++++++++++++++++++++
+Anisble
+++++++++++++++++++++++++++++++++
+sudo apt update
 
-kubectl port-forward --address 0.0.0.0 svc/badstore 8888:80
+sudo apt install software-properties-common
 
+sudo add-apt-repository --yes --update 
+ppa:ansible/ansible
+
+sudo apt install python3
+
+sudo apt install python3-pip
+
+sudo apt install ansible
+
+ansible localhost -m ping -u root
