@@ -1,3 +1,20 @@
+#########################################################################################################################
+#EKS Cluster Creation using eksctl 
+#########################################################################################################################
+# Jenkins is the master/control plan on which this yaml file will run
+# eksctl create nodegroup -f cluster-managed.yaml
+#OR
+# eksctl create cluster --name eksClusterjenkins --version 1.24 --region ap-south-1 --nodegroup-name workernodes --node-type t2.micro --nodes 2
+# you can use AWS cluster autoScaller to scale the nodes
+# ---
+# nodeGroups:
+#   - name: ng1-public
+#     iam:
+#       withAddonPolicies:
+#          autoScaler: true
+# Once the cluster is running, you will need to install Cluster Autoscaler itself.
+# You should also add the following to your managed or unmanaged nodegroup definition(s) to add the tags required for the Cluster Autoscaler to scale the nodegroup:
+
 ---
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
