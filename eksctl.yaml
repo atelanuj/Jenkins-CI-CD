@@ -14,18 +14,18 @@
 #          autoScaler: true
 # Once the cluster is running, you will need to install Cluster Autoscaler itself.
 # You should also add the following to your managed or unmanaged nodegroup definition(s) to add the tags required for the Cluster Autoscaler to scale the nodegroup:
-
+# https://eksctl.io/usage/schema/
 ---
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 metadata: 
     name: my-eks-cluster
     region: ap-south-1
+    version: "1.25"
 nodeGroups:
   - name: eksNodeGroup
+    instanceName: eks-node
     desiredCapacity: 2
-    amiType: managed  #instance
-    kubernetesVersion: "1.24"
     instanceType: t2.micro
     # vpcSubnets:               #for eks creation inside a custom VPC
     # - subnet-12345678

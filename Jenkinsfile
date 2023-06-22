@@ -104,7 +104,7 @@ pipeline {
 			}
             steps{
                 dir("${params.AppName}"){
-                    sh 'eksctl create nodegroup -f eksctl.yaml'
+                    sh 'eksctl create cluster -f eksctl.yaml'
                 }
             }
         }
