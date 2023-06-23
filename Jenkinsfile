@@ -47,7 +47,7 @@ pipeline {
             }
         }
 /*
-        stage("Nexus-deploy"){
+        stage("Jfrog-deploy"){
 
         }
 */
@@ -83,7 +83,7 @@ pipeline {
                 expression {params.action == 'create'}
             }
             steps{
-                sh 'docker image prune -y'
+                sh 'docker image prune'
             }
         }
 
@@ -120,21 +120,28 @@ pipeline {
         }
 
         stage("Wait for Pod-Creation"){
+            when {
+				expression { params.action == 'create' }
+			}
             steps{
-                sh 'sleep 300'
+                sh 'sleep 100'
             }
         }
 
         stage("Roll-Back-Deployment"){
             steps{
-                sh 'kubectl delete deploy ${params.AppName}'
-                sh 'kubectl delete svc ${params.AppName}'
+                dir("${params.AppName}"){
+                    sh 'kubectl delete deploy ${params.AppName}'
+                    sh 'kubectl delete svc ${params.AppName}'
+                }
             }
         }
 
         stage("Deleting the EKS Cluster upto 15 min"){
             steps{
-                sh 'eksctl delete cluster --name ${params.eks-cluster-name}'
+                dir("${params.AppName}"){
+                    sh 'eksctl delete cluster --name ${params.eks-cluster-name}'
+                }
             }
         }
 
