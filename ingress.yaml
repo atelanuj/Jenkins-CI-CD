@@ -1,0 +1,17 @@
+---
+# https://kubernetes.io/docs/concepts/services-networking/ingress/#the-ingress-resource
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: Ingress-kubernetes-configmap-reload
+  namespace: kubernetes-configmap-reload
+spec:
+  rules:
+  - host: kubernetes-configmap-reload.com     #DNS name from which you access
+    http:                                     #http 
+      paths:                                  #http://DNS:port/paths
+      - backend:
+          service:
+            name: kubernetes-configmap-reload #service name metadata
+            port:
+              number: 8081                    #service Port

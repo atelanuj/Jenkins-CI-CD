@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: kubernetes-configmap-reload
+  namespace: kubernetes-configmap-reload
 spec:
   replicas: 2
   selector:
@@ -21,6 +22,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: kubernetes-configmap-reload
+  namespace: kubernetes-configmap-reload
 spec:
   type: LoadBalancer
   selector:
