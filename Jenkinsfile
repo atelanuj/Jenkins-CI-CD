@@ -83,6 +83,7 @@ pipeline {
                 expression {params.action == 'create'}
             }
             steps{
+                sh 'docker rmi $docker_repo/$ImageName:$ImageTag'
                 sh 'docker image prune'
             }
         }
