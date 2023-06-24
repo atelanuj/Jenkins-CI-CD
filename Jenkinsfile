@@ -18,7 +18,7 @@ pipeline {
     stages{
         stage("git-CheckOut"){
             steps{
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/atelanuj/Jenkins-CI-CD.git']])
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/atelanuj/spring-cloud-kubernetes-singham-2-ci-cd.git']])
             }
         }
 /*

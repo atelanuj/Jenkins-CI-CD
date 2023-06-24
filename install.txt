@@ -3,7 +3,7 @@ Jenkins
 ++++++++++++++++++++++++++++++++
 sudo apt update
 
-sudo apt install openjdk-8-jdk -y
+sudo apt install openjdk-11-jdk -y
 
 curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
 
@@ -37,7 +37,7 @@ docker ps
 AWS CLI
 ++++++++++++++++++++++++++++++++
 
-sudo apt install awscli
+sudo apt install awscli -y
 
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 
@@ -69,8 +69,6 @@ curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/d
 
 sudo mv /tmp/eksctl /usr/local/bin
 
-sudo mv /tmp/eksctl /usr/local/bin
-
 eksctl version
 
 eksctl --help
@@ -86,15 +84,23 @@ Anisble
 ++++++++++++++++++++++++++++++++
 sudo apt update
 
-sudo apt install software-properties-common
+sudo apt install software-properties-common -y
 
 sudo add-apt-repository --yes --update 
 ppa:ansible/ansible
 
 sudo apt install python3
 
-sudo apt install python3-pip
+sudo apt install python3-pip -y
 
-sudo apt install ansible
+sudo apt install ansible -y
 
 ansible localhost -m ping -u root
+
++++++++++++++++++++++++++++++++++++++++
+Maven
+++++++++++++++++++++++++++++++++++++++++++
+
+sudo apt install maven -y
+
+mvn --version
