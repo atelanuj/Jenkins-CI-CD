@@ -116,10 +116,10 @@ pipeline {
 			}
             steps{
                 sh 'echo ${WORKSPACE}'
-                sh 'kubectl create ns ${params.AppName}'  //namespace created
+                sh 'kubectl create ns ${AppName}'  //namespace created
                 sh 'kubectl apply -f ${WORKSPACE}/kubernetes-configmap-reload/Deployment.yaml'
                 sh 'sleep 10'
-                sh 'kubectl get all -n ${params.AppName}'
+                sh 'kubectl get all -n ${AppName}'
             }
         }
 
@@ -135,15 +135,15 @@ pipeline {
         stage("Roll-Back-Deployment"){
             steps{
                 dir("${params.AppName}"){
-                    sh 'kubectl delete deploy -n ${params.AppName} ${params.AppName}'
-                    sh 'kubectl delete svc -n ${params.AppName} ${params.AppName}'
+                    sh 'kubectl delete deploy -n ${AppName} ${AppName}'
+                    sh 'kubectl delete svc -n ${AppName} ${AppName}'
                 }
             }
         }
 
         stage("Deleting the EKS Cluster upto 15 min"){
             steps{
-                sh 'eksctl delete cluster --name ${params.eks-cluster-name}'
+                sh 'eksctl delete cluster --name ${eks-cluster-name}'
             }
         }
 
