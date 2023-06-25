@@ -25,7 +25,7 @@ metadata:
 nodeGroups:
   - name: eksNodeGroup
     instanceName: eks-node
-    desiredCapacity: 2
+    desiredCapacity: 1
     version: "1.25"
     instanceType: t2.micro
     # vpcSubnets:               #for eks creation inside a custom VPC

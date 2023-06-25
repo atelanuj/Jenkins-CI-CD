@@ -5,7 +5,7 @@ metadata:
   name: kubernetes-configmap-reload
   namespace: kubernetes-configmap-reload
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: kubernetes-configmap-reload
@@ -24,7 +24,7 @@ metadata:
   name: kubernetes-configmap-reload
   namespace: kubernetes-configmap-reload
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: kubernetes-configmap-reload
   ports:
@@ -32,3 +32,5 @@ spec:
       protocol: TCP
       # ELB's port
       port: 8081
+      targetPort: 8081
+      nodePort: 31500
