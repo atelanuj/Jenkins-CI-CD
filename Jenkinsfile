@@ -118,6 +118,8 @@ pipeline {
                 sh 'echo ${WORKSPACE}'
                 sh 'kubectl create ns ${params.AppName}'  //namespace created
                 sh 'kubectl apply -f ${WORKSPACE}/kubernetes-configmap-reload/Deployment.yaml'
+                sh 'sleep 10'
+                sh 'kubectl get all -n ${params.AppName}'
             }
         }
 
