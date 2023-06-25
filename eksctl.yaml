@@ -26,8 +26,10 @@ nodeGroups:
   - name: eksNodeGroup
     instanceName: eks-node
     desiredCapacity: 1
-    version: "1.25"
     instanceType: t2.micro
+    ssh:
+      publicKeyName: anuj
+
     # vpcSubnets:               #for eks creation inside a custom VPC
     # - subnet-12345678
     # - subnet-98654321
