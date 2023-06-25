@@ -4,6 +4,6 @@ VOLUME /c/Users/eresh.gorantla/
 
 ADD ${WORKSPACE}/target/*.jar .
 
-EXPOSE 8080
+EXPOSE 8081
 
 ENTRYPOINT [ "java", "-jar", "devops-integration.jar" ]
