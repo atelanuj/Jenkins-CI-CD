@@ -21,6 +21,18 @@ pipeline {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/atelanuj/spring-cloud-kubernetes-singham-2-ci-cd.git']])
             }
         }
+
+        stage("Maven-Build"){
+            when{
+                expression {params.action == 'create'}
+            }
+            steps{
+                dir("${params.AppName}") {
+                    sh 'ls -lrt'
+                    sh 'mvn clean package'
+                }
+            }
+        }
 /*
         stage("SonarQube-Static Code Analysis"){
             steps{
@@ -34,19 +46,7 @@ pipeline {
                  }
              }
         }
-*/
-        stage("Maven-Build"){
-            when{
-                expression {params.action == 'create'}
-            }
-            steps{
-                dir("${params.AppName}") {
-                    sh 'ls -lrt'
-                    sh 'mvn clean package'
-                }
-            }
-        }
-/*
+
         stage("Jfrog-deploy"){
 
         }
