@@ -8,12 +8,12 @@ pipeline {
     }
 
     parameters {
-	//choice(name: 'action', choices: 'create\nrollback', description: 'Create/rollback of the deployment')
     string(name: 'ImageName', description: "Name of the docker build", defaultValue: "kubernetes-configmap-reload")
-	string(name: 'ImageTag', description: "Name of the docker build", defaultValue: "v${BUILD_NUMBER}")
-	string(name: 'AppName', description: "Name of the Application", defaultValue: "kubernetes-configmap-reload")
+    string(name: 'ImageTag', description: "Name of the docker build", defaultValue: "v${BUILD_NUMBER}")
+    string(name: 'AppName', description: "Name of the Application", defaultValue: "kubernetes-configmap-reload")
     string(name: 'docker_repo', description: "Name of docker repository", defaultValue: "anujatel")
     string(name: 'eks-cluster-name', description: "Name of Kubernetes Cluster", defaultValue: "my-eks-cluster")
+    string(name: 'region-code', description: "AWS Cluster Region", defaultValue: "ap-south-1")
   }
 
     stages{
@@ -70,6 +70,7 @@ pipeline {
         stage("EKS-Deployment"){
             steps{
                 sh 'echo ${WORKSPACE}'
+		sh 'aws eks update-kubeconfig --region ${region-code} --name ${eks-cluster-name}'
                 //sh 'kubectl create ns ${AppName}'  //namespace created
                 sh 'kubectl apply -f ${WORKSPACE}/Deployment.yaml'
                 sh 'sleep 10'
