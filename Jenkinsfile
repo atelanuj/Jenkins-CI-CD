@@ -44,9 +44,6 @@ pipeline {
              }
         }
 
-        stage("Jfrog-deploy"){
-
-        }
 
         stage("Docker-image-Build"){
             steps{
