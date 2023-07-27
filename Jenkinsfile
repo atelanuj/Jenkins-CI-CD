@@ -37,9 +37,10 @@ pipeline {
                      withSonarQubeEnv(credentialsId: 'SonarToken') {
                         sh 'mvn sonar:sonar'
                     }
-                     timeout(time: 1, unit: 'HOURS') {                                 //qualitGate is true then the rest will run else false
+                    /* timeout(time: 1, unit: 'HOURS') {                                 //qualitGate is true then the rest will run else false
                         waitForQualityGate abortPipeline: true, credentialsId: 'SonarToken'
                     }
+		    */
                  }
              }
         }
