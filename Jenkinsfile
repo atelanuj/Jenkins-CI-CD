@@ -58,9 +58,9 @@ pipeline {
             steps{
                 
                     script{
-                        withCredentials([string(credentialsId: 'DockerHubPasswd', variable: 'passwd')]) {
+                        /*withCredentials([string(credentialsId: 'DockerHubPasswd', variable: 'passwd')]) {
                          	sh 'docker login -u $docker_cred -p $passwd'
-                        }
+                        }*/
                         sh 'docker push $docker_repo/$ImageName:$ImageTag'
                     }
                 
