@@ -70,7 +70,7 @@ pipeline {
         stage("EKS-Deployment"){
             steps{
                 sh 'echo ${WORKSPACE}'
-                sh 'kubectl create ns ${AppName}'  //namespace created
+                //sh 'kubectl create ns ${AppName}'  //namespace created
                 sh 'kubectl apply -f ${WORKSPACE}/Deployment.yaml'
                 sh 'sleep 10'
                 sh 'kubectl get all -n ${AppName}'
