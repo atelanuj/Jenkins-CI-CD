@@ -17,7 +17,7 @@ sudo systemctl status jenkins
 
 sudo su - jenkins
 
-jenkins ALL=(ALL) NOPASSWD: ALL
+echo "jenkins ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
 
 +++++++++++++++++++++++++++++++++
 Docker
