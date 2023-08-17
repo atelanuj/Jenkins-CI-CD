@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: kubernetes-configmap-reload
-          image: ${docker_repo}/${ImageName}:${ImageTag}
+          image: anujatel/kubernetes-configmap-reload:latest
 ---
 kind: Service
 apiVersion: v1
