@@ -68,7 +68,7 @@ pipeline {
         stage("EKS-Deployment"){
             steps{
                 sh 'echo ${WORKSPACE}'
-		        //sh 'aws eks update-kubeconfig --region ${region-code} --name ${eks-cluster-name}'
+		        sh 'aws eks update-kubeconfig --region ${region-code} --name ${eks-cluster-name}' //kubeconfig update
                 sh 'kubectl create ns ${AppName}'  //namespace created
                 sh 'kubectl apply -f ${WORKSPACE}/Deployment.yaml'
                 sh 'sleep 10'
