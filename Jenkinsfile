@@ -30,22 +30,20 @@ pipeline {
                 
             }
         }
-
+/*
         stage("SonarQube-Static Code Analysis"){
             steps{
                  script{
                      withSonarQubeEnv(credentialsId: 'SonarToken') {
                         sh 'mvn sonar:sonar'
                     }
-                    /* timeout(time: 1, unit: 'HOURS') {                                 //qualitGate is true then the rest will run else false
+                     timeout(time: 1, unit: 'HOURS') {                                 //qualitGate is true then the rest will run else false
                         waitForQualityGate abortPipeline: true, credentialsId: 'SonarToken'
                     }
-		    */
                  }
              }
         }
-
-
+*/
         stage("Docker-image-Build"){
             steps{
                 
