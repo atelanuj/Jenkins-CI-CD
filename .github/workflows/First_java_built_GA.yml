@@ -33,8 +33,10 @@ jobs:
     - name: Docker Build
       run: docker build -t atelanuj/github_actions .
 
-    - name: Docker Tag and Push
+    - name: Docker Login
       run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
+
+    - name: docker Push
       run: docker push atelanuj/github_actions
       
         
