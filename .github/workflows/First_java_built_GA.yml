@@ -40,6 +40,6 @@ jobs:
       uses: docker/build-push-action@v5.0.0
       with:
         push: true
-        tags: "anujatel/Github_actions"
+        tags: anujatel/github_actions
         
       
