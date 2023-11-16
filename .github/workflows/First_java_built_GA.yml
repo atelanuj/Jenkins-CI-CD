@@ -36,7 +36,10 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-    # - name: Docker Tag and Push]
-      
+    - name: Docker Tag and Push
+      uses: docker/build-push-action@v5.0.0
+      with:
+        push: true
+        tag: anujatel/Github_actions
         
       
