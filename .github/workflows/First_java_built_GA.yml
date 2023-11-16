@@ -40,9 +40,6 @@ jobs:
       run: docker build -t atelanuj/github_actions .
 
     - name: Docker Tag and Push
-      uses: docker/build-push-action@v5.0.0
-      with:
-        push: true
-        # tags: anujatel/github_actions
+      run: docker push atelanuj/github_actions
         
       
