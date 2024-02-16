@@ -23,6 +23,7 @@ jobs:
         uses: super-linter/super-linter/slim@latest
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_BEFORE_SHA: ${{ github.event.before }}
           USE_FIND_ALGORITHM: true
           VALIDATE_MARKDOWN: false
           VALIDATE_CHECKOV: false
