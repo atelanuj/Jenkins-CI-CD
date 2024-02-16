@@ -1,4 +1,4 @@
-name: Ansible_lint
+name: SuperLinter-Ansible
 on:
   push:
     branches: [ "main" ]
@@ -6,18 +6,12 @@ on:
   #   branches: [ "main" ]  
 jobs:
   build:
-
     runs-on: ubuntu-latest
+
 
     steps:
       - name: Code Checkout
         uses: actions/checkout@v4
-      
-      # - name: running Ansible-lint to check the syntax of ansible playbook
-      #   uses: ansible/ansible-lint@main
-      #   with:
-      #     working_directory: "roles"
-      #     args: "-q"
 
       - name: Runnig Superlinter
         uses: super-linter/super-linter/slim@latest
