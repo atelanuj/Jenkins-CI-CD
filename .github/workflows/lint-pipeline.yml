@@ -33,11 +33,11 @@ jobs:
           USE_FIND_ALGORITHM: true
           VALIDATE_MARKDOWN: false
           VALIDATE_CHECKOV: false
-          VALIDATE_BASH_EXEC: false
+          #VALIDATE_BASH_EXEC: false
           VALIDATE_CSS: false
           VALIDATE_DART: false
           VALIDATE_KOTLIN: false
-          VALIDATE_NATURAL_LANGUAGE: false
+          #VALIDATE_NATURAL_LANGUAGE: false
           VALIDATE_PERL: false
           VALIDATE_PHP: false
           DISABLE_ERRORS: true
